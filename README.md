@@ -45,9 +45,9 @@ then you get results from reddit and hackernews by your keyword.
 ```bash
 python3 main.py
 ```
-input your keyword: Gemini Nano
+input your keyword: ComfyUI
 
-hottest results for keyword "ComfyUI":
+hottest results of Reddit and HackerNews:
 ```markdown
 Platform: Reddit
 Author: Illustrious-Yard-871
