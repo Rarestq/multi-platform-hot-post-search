@@ -47,74 +47,77 @@ python3 main.py
 ```
 input your keyword: Gemini Nano
 
-results:
+hottest results:
 ```markdown
 Platform: Reddit
-Author: lostlifon
-Description: GPT-4 Week 5. Open Source is coming + Music industry in shambles - Nofil's Weekly Breakdown
-Metrics: 3353
-Link: https://www.reddit.com/r/ChatGPT/comments/12v8oly/gpt4_week_5_open_source_is_coming_music_industry/
-Created_at: 2023-04-22 15:05:55
+Author: Illustrious-Yard-871
+Title: I couldn't find an intuitive GUI for GLIGEN so I made one myself. It uses ComfyUI in the backend
+Metrics: 2437
+Link: https://www.reddit.com/r/StableDiffusion/comments/1asmn6d/i_couldnt_find_an_intuitive_gui_for_gligen_so_i/
+Post: 2024-02-16 23:12:58
 ---
 Platform: Reddit
-Author: PhanThomBjork
-Description: SDXL + SVD + Suno AI
-Metrics: 1090
-Link: https://www.reddit.com/r/StableDiffusion/comments/18f80gg/sdxl_svd_suno_ai/
-Created_at: 2023-12-10 17:03:41
+Author: Choidonhyeon
+Title: ComfyUI - Creating Game Icons base on realtime drawing
+Metrics: 1542
+Link: https://www.reddit.com/r/StableDiffusion/comments/1b9vqdz/comfyui_creating_game_icons_base_on_realtime/
+Post: 2024-03-08 18:44:52
 ---
 Platform: Reddit
-(venv) (base) rarestzhoudeMacBook-Pro:multi-platform-hot-post-search rarestzhou$ python3 main.py 
-Please enter the keyword you want to search for: suno ai
-Searching HackerNews for keyword: suno ai
-Platform: Reddit
-Author: lostlifon
-Description: GPT-4 Week 5. Open Source is coming + Music industry in shambles - Nofil's Weekly Breakdown
-Metrics: 3358
-Link: https://www.reddit.com/r/ChatGPT/comments/12v8oly/gpt4_week_5_open_source_is_coming_music_industry/
-Created_at: 2023-04-22 15:05:55
+Author: ThroughForests
+Title: Hank Hill tries ComfyUI
+Metrics: 1252
+Link: https://www.reddit.com/r/StableDiffusion/comments/15ilqso/hank_hill_tries_comfyui/
+Post: 2023-08-05 04:22:22
 ---
 Platform: Reddit
-Author: PhanThomBjork
-Description: SDXL + SVD + Suno AI
-Metrics: 1094
-Link: https://www.reddit.com/r/StableDiffusion/comments/18f80gg/sdxl_svd_suno_ai/
-Created_at: 2023-12-10 17:03:41
+Author: comfyanonymous
+Title: Real time prompting with SDXL Turbo and ComfyUI running locally
+Metrics: 1181
+Link: https://www.reddit.com/r/StableDiffusion/comments/1869cnk/real_time_prompting_with_sdxl_turbo_and_comfyui/
+Post: 2023-11-28 22:48:52
 ---
 Platform: Reddit
-Author: Galadnir
-Description: i'm trying to marry Isolla of Suno, but I didn't know that incest is popular in calradia.
-Metrics: 584
-Link: https://www.reddit.com/r/mountandblade/comments/6to5mo/im_trying_to_marry_isolla_of_suno_but_i_didnt/
-Created_at: 2017-08-14 17:55:03
----
-Platform: Reddit
-Author: Shynaya
-Description: Lil update on my collection ! Bought a lot of since my last post …. 🥹 I need to finish my Claynore c...
-Metrics: 508
-Link: https://www.reddit.com/r/MangaCollectors/comments/xihhy3/lil_update_on_my_collection_bought_a_lot_of_since/
-Created_at: 2022-09-19 16:38:42
----
-Platform: Reddit
-Author: Infamous_AI_1568
-Description: The best AI for music creation
-Metrics: 478
-Link: https://www.reddit.com/r/AI_Tools_News/comments/18zaqhm/the_best_ai_for_music_creation/
-Created_at: 2024-01-05 16:21:48
+Author: AtreveteTeTe
+Title: Roll your own Motion Brush with AnimateDiff and in-painting in ComfyUI
+Metrics: 930
+Link: https://www.reddit.com/r/StableDiffusion/comments/17xnqn7/roll_your_own_motion_brush_with_animatediff_and/
+Post: 2023-11-17 20:05:15
 ---
 Platform: HackerNews
-Author: elsewhen
-Description: Suno AI
-Metrics: 336
-Link: https://www.suno.ai/
-Created_at: 2023-12-23 12:24:14
+Author: gslin
+Title: Windows 9x and Word 9x at 800x600 resolution. Spacious. Comfy
+Metrics: 338
+Link: https://oldbytes.space/@48kRAM/110695813509755748
+Post: 2023-07-11 15:31:17
 ---
 Platform: HackerNews
-Author: herbertl
-Description: Suno, an AI music generator
-Metrics: 139
-Link: https://www.rollingstone.com/music/music-features/suno-ai-chatgpt-for-music-1234982307/
-Created_at: 2024-03-18 15:52:02
+Author: belladoreai
+Title: Keylogger discovered in image generator extension
+Metrics: 302
+Link: https://old.reddit.com/r/comfyui/comments/1dbls5n/psa_if_youve_used_the_comfyui_llmvision_node_from/
+Post: 2024-06-09 17:29:00
+---
+Platform: HackerNews
+Author: vmoore
+Title: Comfy Software: A software aesthetic for hackers with depression
+Metrics: 193
+Link: https://catgirl.ai/log/comfy-software/
+Post: 2022-10-02 05:31:36
+---
+Platform: HackerNews
+Author: godDLL
+Title: A Comfy Helvetica frontpage for Hacker News
+Metrics: 176
+Link: http://comfy-helvetica.jottit.com/
+Post: 2011-01-13 00:45:39
+---
+Platform: HackerNews
+Author: kettunen
+Title: Creating Comfy FreeBSD Jails Using Standard Tools
+Metrics: 123
+Link: https://kettunen.io/post/standard-freebsd-jails/
+Post: 2021-01-17 19:07:30
 ---
 ```
 
