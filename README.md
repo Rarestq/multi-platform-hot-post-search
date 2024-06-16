@@ -1,4 +1,3 @@
-```markdown
 # Multi-Platform Hot Post Search
 
 This repository provides a tool for searching hot posts across multiple platforms.
