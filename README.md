@@ -1,6 +1,6 @@
 # Multi-Platform Hot Post Search
 
-This repository provides a tool for searching hot posts across multiple platforms.
+This repository provides a tool for searching hot posts across multiple platforms, for now it supports reddit and hackernews.
 
 ## How to Use
 
