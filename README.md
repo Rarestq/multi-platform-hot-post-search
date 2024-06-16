@@ -130,9 +130,9 @@ If you would like to contribute to this project, please follow these steps:
 6. Create a new Pull Request.
 
 ## Contact
-Email: rarestzhou@gmail.com
-Wechat:zjc111369
-![](https://mp.weixin.qq.com/cgi-bin/getimgdata?msgid=&mode=small&source=&fileId=100000588&ow=725340616&token=1048341528&lang=zh_CN)
+- Email: rarestzhou@gmail.com
+- Wechat:zjc111369
+![](https://mmbiz.qpic.cn/mmbiz_jpg/KhD0fibB4GCDFlkCNLH5B7xiaIlGSWFSbXEtCYRJQ7fzsvb447XhJm35pkgjN75e0IfAbIBp5hdfl15ke3VJkdog/640?wx_fmt=jpeg)
 
 ---
 
