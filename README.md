@@ -47,7 +47,7 @@ python3 main.py
 ```
 input your keyword: Gemini Nano
 
-hottest results:
+hottest results for keyword "ComfyUI":
 ```markdown
 Platform: Reddit
 Author: Illustrious-Yard-871
@@ -128,7 +128,7 @@ If you would like to contribute to this project, please follow these steps:
 1. Fork this repository.
 2. Create a new branch (`git checkout -b feature`)
 3. Make your changes.
-4. Commit your changes (`git commit -am 'Add new feature'`)
+4. Commit your changes (`git commit -m 'Add new feature'`)
 5. Push to the branch (`git push origin feature`)
 6. Create a new Pull Request.
 
