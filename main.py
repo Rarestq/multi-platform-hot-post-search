@@ -46,10 +46,10 @@ def main():
     for post in top_posts:
         print(f"Platform: {post['platform']}")
         print(f"Author: {post['author']}")
-        print(f"Description: {post['description']}")
+        print(f"Title: {post['title']}")
         print(f"Metrics: {post['metrics']}")
         print(f"Link: {post['link']}")
-        print(f"Created_at: {post['created_at']}")
+        print(f"Post: {post['created_at']}")
         print("---")
 
 if __name__ == "__main__":

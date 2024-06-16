@@ -23,7 +23,18 @@ class Reddit(Platform):
         """
         Use the Reddit API to fetch top posts related to the given keyword.
         """
-        posts = self.reddit.subreddit('all').search(keyword, sort='top', limit=5)
+        
+        print(f"Searching Reddit for keyword: {keyword}")
+        
+        # Increase the limit to fetch more posts initially for sorting
+        posts = self.reddit.subreddit('all').search(keyword, limit=50)
+
+        # Convert posts to a list and sort them by score in descending order (highest score first)
+        sorted_posts = sorted(posts, key=lambda post: (post.score, post.created_utc), reverse=True)
+
+        # Select the top 5 newest posts
+        top_posts = sorted_posts[:5]
+
         return [self.format_post(
             "Reddit",
             post.author.name if post.author else "Unknown",
@@ -31,7 +42,7 @@ class Reddit(Platform):
             post.score,
             f"https://www.reddit.com{post.permalink}",
             created_at=self.format_timestamp(post.created_utc)
-        ) for post in posts]
+        ) for post in top_posts]
         
     def format_timestamp(self, timestamp):
         """

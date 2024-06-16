@@ -7,16 +7,20 @@ class Platform(ABC):
         Abstract method to be implemented by each platform to fetch posts related to the given keyword.
         """
         pass
+    
+    @abstractmethod
+    def format_timestamp(self, timestamp):
+        pass
 
     @staticmethod
-    def format_post(platform, author, description, metrics, link, created_at):
+    def format_post(platform, author, title, metrics, link, created_at):
         """
         Method to format post information, ensuring consistency across different platforms.
         """
         return {
             "platform": platform,
             "author": author,
-            "description": description[:100] + "..." if len(description) > 100 else description,
+            "title": title,
             "metrics": metrics,
             "link": link,
             "created_at": created_at
