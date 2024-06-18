@@ -1,6 +1,7 @@
 from platforms.reddit_search import Reddit
 from platforms.hackernews_search import HackerNews
 from platforms.github_repos_search import GitHub
+from platforms.theresanaiforthat_search import TheresAnAIForThat
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -40,6 +41,7 @@ def main():
     searcher.register_platform(Reddit())
     searcher.register_platform(HackerNews())
     searcher.register_platform(GitHub())
+    searcher.register_platform(TheresAnAIForThat())
 
     # Search for the keyword and get the top posts
     top_posts = searcher.search(keyword)
