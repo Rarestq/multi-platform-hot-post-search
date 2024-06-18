@@ -1,5 +1,6 @@
 from platforms.reddit_search import Reddit
 from platforms.hackernews_search import HackerNews
+from platforms.github_repos_search import GitHub
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -38,6 +39,7 @@ def main():
     searcher = PostSearcher()
     searcher.register_platform(Reddit())
     searcher.register_platform(HackerNews())
+    searcher.register_platform(GitHub())
 
     # Search for the keyword and get the top posts
     top_posts = searcher.search(keyword)
