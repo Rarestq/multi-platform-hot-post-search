@@ -2,6 +2,13 @@
 
 This repository provides a tool for searching hot posts across multiple platforms, for now it supports reddit and hackernews.
 
+## Recent Updates
+
+- **Date: 2024-06-18** - Added support for GitHub keyword search.
+- **Date: 2024-06-18** - Added support for theresanaiforthat keyword search.
+- **Date: 2024-06-18** - Added support for v2ex keyword search.
+- **Date: 2024-06-18** - Fix some bugs and zoned out for 10 minutes.
+
 ## How to Use
 
 To use this tool, follow these steps:
