@@ -4,7 +4,7 @@ This repository provides a tool for searching hot posts across multiple platform
 
 ## Recent Updates
 
-- **Date: 2024-06-18**
+- **2024-06-18**
 
    - Support for GitHub keyword search.
    - Support for theresanaiforthat keyword search.
