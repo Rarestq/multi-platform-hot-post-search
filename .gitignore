@@ -41,3 +41,6 @@ Thumbs.db
 *.egg-info/
 dist/
 build/
+
+# 隐私信息
+to_email_list.txt
