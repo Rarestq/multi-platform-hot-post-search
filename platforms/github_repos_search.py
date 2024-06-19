@@ -56,3 +56,6 @@ class GitHub(Platform):
         """
         utc_time = datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=timezone.utc)
         return utc_time.strftime('%Y-%m-%d %H:%M:%S')
+    
+    def requires_translation(self):
+        return False

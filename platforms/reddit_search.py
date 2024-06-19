@@ -23,7 +23,6 @@ class Reddit(Platform):
         """
         Use the Reddit API to fetch top posts related to the given keyword.
         """
-        
         print(f"Searching Reddit for keyword: {keyword}")
         
         # Increase the limit to fetch more posts initially for sorting
@@ -50,3 +49,6 @@ class Reddit(Platform):
         """
         utc_time = datetime.fromtimestamp(timestamp, tz=timezone.utc)
         return utc_time.strftime('%Y-%m-%d %H:%M:%S')
+    
+    def requires_translation(self):
+        return True

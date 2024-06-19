@@ -15,6 +15,8 @@ class TheresAnAIForThat(Platform):
         """
         Fetch top posts related to the given keyword from theresanaiforthat.com.
         """
+        print(f"Searching TheresAnAIForThat for keyword: {keyword}")
+        
         try:
             response = requests.get(THERESANAIFORTHAT_URL, headers=HEADERS)
             response.raise_for_status()  # Raise an error for bad responses (4xx or 5xx)
@@ -62,3 +64,6 @@ class TheresAnAIForThat(Platform):
         
     def format_timestamp(self, timestamp):
         return super().format_timestamp(timestamp)
+    
+    def requires_translation(self):
+        return True

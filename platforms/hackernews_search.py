@@ -53,3 +53,6 @@ class HackerNews(Platform):
             return "Unknown"
         utc_time = datetime.fromtimestamp(timestamp, tz=timezone.utc)
         return utc_time.strftime('%Y-%m-%d %H:%M:%S')
+    
+    def requires_translation(self):
+        return True

@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup
 from .platform import Platform
 from datetime import datetime
 
-# 全局常量
 POSTS_LIMIT = 5
 GOOGLE_URL = "https://www.google.com/search"
 CHROME_DRIVER_PATH = "/usr/local/bin/chromedriver"

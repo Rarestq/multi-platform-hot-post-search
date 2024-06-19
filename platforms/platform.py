@@ -25,3 +25,10 @@ class Platform(ABC):
             "link": link,
             "created_at": created_at
         }
+        
+    @abstractmethod
+    def requires_translation(self):
+        """
+        Abstract method to be implemented by each platform to determine if the keyword needs translation.
+        """
+        pass

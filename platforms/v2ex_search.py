@@ -4,7 +4,6 @@ from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 from .platform import Platform
 
-# 全局常量
 POSTS_LIMIT = 5
 V2EX_URL = "https://www.sov2ex.com/"
 CHROME_DRIVER_PATH = "/usr/local/bin/chromedriver"
@@ -14,6 +13,8 @@ class V2EX(Platform):
         """
         Fetch top posts related to the given keyword from V2EX using sov2ex.com.
         """
+        print(f"Searching V2EX for keyword: {keyword}")
+        
         params = {
             'q': keyword
         }
@@ -74,3 +75,6 @@ class V2EX(Platform):
         
     def format_timestamp(self, timestamp):
         return super().format_timestamp(timestamp)
+    
+    def requires_translation(self):
+        return False
