@@ -4,6 +4,13 @@ This repository provides a tool for searching hot posts across multiple platform
 
 ## Recent Updates
 
+- **2024-06-19**
+
+   - Add Google Translation for keyword.
+   - Fix some bugs and eat a watermelon.
+
+---
+
 - **2024-06-18**
 
    - Support for GitHub keyword search.
