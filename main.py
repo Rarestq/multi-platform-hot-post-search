@@ -3,8 +3,11 @@ from platforms.hackernews_search import HackerNews
 from platforms.github_repos_search import GitHub
 from platforms.theresanaiforthat_search import TheresAnAIForThat
 from platforms.v2ex_search import V2EX
-from platforms.v2ex_search_google import V2EX_GOOGLE
+# from platforms.v2ex_search_google import V2EX_GOOGLE
 from dotenv import load_dotenv
+from emails.email_notifier import EmailNotifier
+from apscheduler.schedulers.background import BackgroundScheduler
+import atexit
 
 load_dotenv()
 
@@ -37,6 +40,7 @@ def main():
     and print the results.
     """
     keyword = input("Please enter the keyword you want to search for: ")
+    user_email = input("Please enter your email to receive notifications: ")
 
     # Create PostSearcher object and register platforms
     searcher = PostSearcher()
@@ -59,6 +63,24 @@ def main():
         print(f"Link: {post['link']}")
         print(f"Post: {post['created_at']}")
         print("---")
+        
+    # Set up scheduler to run the email notification task every day at 8 PM
+    scheduler = BackgroundScheduler()
+    # scheduler.add_job(main, 'cron', hour=20, minute=0)
+    
+    # Note：Test to run the email notification task every 5 minute
+    scheduler.add_job(main, 'interval', minutes=5)
+    scheduler.start()
+
+    # Shut down the scheduler when exiting the app
+    atexit.register(lambda: scheduler.shutdown())
+
+    # Send email notification
+    if top_posts:
+        body = "\n".join([f"Platform: {post['platform']}\nAuthor: {post['author']}\nTitle: {post['title']}\nMetrics: {post['metrics']}\nLink: {post['link']}\nPost: {post['created_at']}\n---" for post in top_posts])
+        email_notifier = EmailNotifier()
+        email_notifier.add_recipient(user_email)
+        email_notifier.send_email(f"Keyword: {keyword} - Hottest Posts", body)
 
 if __name__ == "__main__":
     main()
