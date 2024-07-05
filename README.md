@@ -159,8 +159,14 @@ If you would like to contribute to this project, please follow these steps:
 5. Push to the branch (`git push origin feature`)
 6. Create a new Pull Request.
 
+## Sponsor
+<a href='https://ko-fi.com/rarestzhou' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi5.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' />
+
+![Sponsor me by wechat](https://img.mini-url.top/file/7571504552e403f309a0b.jpg)
+
 ## Contact
 - Email: rarestzhou@gmail.com
+- DM me on [twitter](https://twitter.com/rarestzhou) is also welcome.
 - Wechat:zjc111369
 ![](https://mmbiz.qpic.cn/mmbiz_jpg/KhD0fibB4GCDFlkCNLH5B7xiaIlGSWFSbXEtCYRJQ7fzsvb447XhJm35pkgjN75e0IfAbIBp5hdfl15ke3VJkdog/640?wx_fmt=jpeg)
 
