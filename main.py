@@ -6,9 +6,8 @@ from platforms.v2ex_search import V2EX
 from dotenv import load_dotenv
 from google.cloud import translate_v2 as translate
 import re
-# from emails.email_notifier import EmailNotifier
-# from apscheduler.schedulers.background import BackgroundScheduler
-# import atexit
+import concurrent.futures
+import time
 
 load_dotenv()
 
@@ -62,27 +61,87 @@ class PostSearcher:
                 all_posts.extend(platform.get_posts(keyword))
         return all_posts
 
-def main():
-    """
-    Main function to interact with the user, register platforms, perform search, 
-    and print the results.
-    """
-    keyword = input("Please enter the keyword you want to search for: ")
-    # user_email = input("Please enter your email to receive notifications: ")
-
-    # Create PostSearcher object and register platforms
+def initialize_searcher():
     searcher = PostSearcher()
     searcher.register_platform(Reddit())
     searcher.register_platform(HackerNews())
     searcher.register_platform(GitHub())
     searcher.register_platform(TheresAnAIForThat())
     searcher.register_platform(V2EX())
+    
+    return searcher
 
-    # Search for the keyword and get the top posts
+def search_hot_posts(keyword, platforms=None):
+    searcher = initialize_searcher()
+    
+    if platforms:
+        searcher.platforms = [p for p in searcher.platforms if p.__class__.__name__.lower() in platforms]
+    
     top_posts = searcher.search(keyword)
-
-    # Print the results
+    
+    formatted_posts = []
     for post in top_posts:
+        formatted_post = {
+            "platform": post['platform'],
+            "author": post['author'],
+            "title": post['title'],
+            "metrics": post['metrics'],
+            "link": post['link'],
+            "created_at": post['created_at']
+        }
+        formatted_posts.append(formatted_post)
+    
+    return formatted_posts
+
+def optimized_search_hot_posts(keyword, platforms):
+    searcher = initialize_searcher()
+
+    if platforms:
+        searcher.platforms = [p for p in searcher.platforms if p.__class__.__name__.lower() in platforms]
+
+    all_posts = []
+    search_times = {}
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        future_to_platform = {}
+        for platform in searcher.platforms:
+            if platform.requires_translation():
+                translated_keyword = searcher.translate_keyword(keyword)
+                future = executor.submit(platform.get_posts, translated_keyword)
+            else:
+                future = executor.submit(platform.get_posts, keyword)
+            future_to_platform[future] = platform
+
+        for future in concurrent.futures.as_completed(future_to_platform):
+            platform = future_to_platform[future]
+            start_time = time.perf_counter()
+            try:
+                posts = future.result()
+                all_posts.extend(posts)
+            except Exception as exc:
+                print(f'{platform.__class__.__name__} generated an exception: {exc}')
+            end_time = time.perf_counter()
+            search_times[platform.__class__.__name__] = round((end_time - start_time) * 1000, 2)  # transfer to milliseconds
+
+    # Format the results
+    formatted_posts = []
+    for post in all_posts:
+        formatted_post = {
+            "platform": post['platform'],
+            "author": post['author'],
+            "title": post['title'],
+            "metrics": post['metrics'],
+            "link": post['link'],
+            "created_at": post['created_at']
+        }
+        formatted_posts.append(formatted_post)
+
+    return formatted_posts, search_times
+
+# This part is optional, you can keep it for local testing
+if __name__ == "__main__":
+    keyword = input("Please enter the keyword you want to search for: ")
+    results = search_hot_posts(keyword)
+    for post in results:
         print(f"Platform: {post['platform']}")
         print(f"Author: {post['author']}")
         print(f"Title: {post['title']}")
@@ -90,24 +149,3 @@ def main():
         print(f"Link: {post['link']}")
         print(f"Post: {post['created_at']}")
         print("---")
-        
-    # # Set up scheduler to run the email notification task every day at 8 PM
-    # scheduler = BackgroundScheduler()
-    # # scheduler.add_job(main, 'cron', hour=20, minute=0)
-    
-    # # Note：Test to run the email notification task every 5 minute
-    # scheduler.add_job(main, 'interval', minutes=5)
-    # scheduler.start()
-
-    # # Shut down the scheduler when exiting the app
-    # atexit.register(lambda: scheduler.shutdown())
-
-    # # Send email notification
-    # if top_posts:
-    #     body = "\n".join([f"Platform: {post['platform']}\nAuthor: {post['author']}\nTitle: {post['title']}\nMetrics: {post['metrics']}\nLink: {post['link']}\nPost: {post['created_at']}\n---" for post in top_posts])
-    #     email_notifier = EmailNotifier()
-    #     email_notifier.add_recipient(user_email)
-    #     email_notifier.send_email(f"Keyword: {keyword} - Hottest Posts", body)
-
-if __name__ == "__main__":
-    main()
