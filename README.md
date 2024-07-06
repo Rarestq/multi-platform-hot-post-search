@@ -47,7 +47,7 @@ This project implements a cross-platform search API that allows users to search 
 ├── utils
 │   └── env_manager.py
 ├── venv
-├── .env
+├── .env.example
 ├── .gitignore
 ├── app.py
 ├── config.py
