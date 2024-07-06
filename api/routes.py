@@ -9,10 +9,17 @@ from core.cache import generate_cache_key, cache_get, cache_set
 from core.posts_search import optimized_search_hot_posts
 import logging
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 def register_routes(app):
-    limiter = Limiter(key_func=get_remote_address, app=app)
+    limiter = Limiter(
+      get_remote_address,
+      app=app,
+      storage_uri=app.config['CACHE_REDIS_URL'],
+      storage_options={"socket_connect_timeout": 30},
+      strategy=app.config['RATELIMIT_STRATEGY'],
+    )
 
     @app.route('/v1/search', methods=['POST'])
     @limiter.limit("5 per minute")

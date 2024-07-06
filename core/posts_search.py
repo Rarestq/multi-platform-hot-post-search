@@ -8,6 +8,7 @@ from core.platforms.github_repos_search import GitHub
 from core.platforms.theresanaiforthat_search import TheresAnAIForThat
 from core.platforms.v2ex_search import V2EX
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 class PostSearcher:

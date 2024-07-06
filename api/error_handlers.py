@@ -2,6 +2,7 @@ from flask import jsonify
 from werkzeug.exceptions import HTTPException
 import logging
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 def register_error_handlers(app):

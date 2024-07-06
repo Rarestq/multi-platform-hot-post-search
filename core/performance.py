@@ -3,6 +3,7 @@ from flask import current_app, request, g
 import time
 from functools import wraps
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 def setup_performance_monitoring(app):

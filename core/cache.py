@@ -5,6 +5,7 @@ import redis
 import json
 import logging
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 # global Redis client
@@ -50,7 +51,6 @@ def cache_get(key: str) -> Any:
         The cached value or None if the key does not exist.
     """
     try:
-        logging.info(f"cache_get for key: {key}")
         redis_client = get_redis_client()
         value = redis_client.get(key)
         if value:

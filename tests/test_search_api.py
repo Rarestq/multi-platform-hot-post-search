@@ -17,7 +17,7 @@ def client():
 
 def test_search_endpoint(client, mocker):
     mock_search = mocker.patch('core.posts_search.optimized_search_hot_posts', return_value=([], {"total_time": 100}))
-    response = client.post('/v1/search', json={"keyword": "AI", "platforms": ["reddit", "hackernews"]})
+    response = client.post('/v1/search', json={"keyword": "Google", "platforms": ["reddit", "hackernews"]})
     assert response.status_code == 200
     assert "results" in response.json
     assert "search_times" in response.json
