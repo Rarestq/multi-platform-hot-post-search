@@ -1,151 +1,137 @@
-# Multi-Platform Hot Post Search
+# Cross-Platform Search Project
 
-This repository provides a tool for searching hot posts across multiple platforms, for now it supports reddit and hackernews.
+This project implements a cross-platform search API that allows users to search for hottest posts by keyword across multiple platforms including Reddit, Hacker News, GitHub, V2EX, and TheresAnAIForThat.
 
-## Recent Updates
+## Features
 
-- **2024-06-19**
+- Search across multiple platforms with a single API call
+- Caching mechanism for improved performance
+- Rate limiting to prevent abuse
+- Keyword translation for non-English queries
+- Performance monitoring
+- Swagger documentation
 
-   - Add Google Translation for keyword.
-   - Fix some bugs and eat a watermelon.
+## Project Structure
 
----
+```
+.
+├── api
+│   ├── error_handlers.py
+│   ├── routes.py
+│   └── schemas.py
+├── core
+│   ├── emails
+│   └── platforms
+│       ├── __init__.py
+│       ├── github_repos_search.py
+│       ├── hackernews_search.py
+│       ├── platform.py
+│       ├── reddit_search.py
+│       ├── theresanaifforthat_search.py
+│       ├── twitter_search_v2_oauth.py
+│       ├── twitter_search.py
+│       ├── v2ex_search_google.py
+│       └── v2ex_search.py
+│   ├── __init__.py
+│   ├── cache.py
+│   ├── cli.py
+│   ├── models.py
+│   ├── performance.py
+│   ├── posts_search.py
+│   ├── tasks.py
+│   ├── translator.py
+│   └── utils.py
+├── tests
+│   ├── conftest.py
+│   └── test_search_api.py
+├── utils
+│   └── env_manager.py
+├── venv
+├── .env
+├── .gitignore
+├── app.py
+├── config.py
+├── main.py
+├── pytest.ini
+├── README.md
+├── requirements.txt
+└── run.py
+```
 
-- **2024-06-18**
+## Installation
 
-   - Support for GitHub keyword search.
-   - Support for theresanaiforthat keyword search.
-   - Support for v2ex keyword search.
-   - Fix some bugs and zoned out for 10 minutes.
-
----
-
-- **2024-06-17**
-
-   - Repository init.
-   - Support for Reddit keyword search.
-   - Support for HackerNews keyword search.
-   - Fix some bugs and drink some water.
-
----
-
-## How to Use
-
-To use this tool, follow these steps:
-
-1. Clone the repository to your local machine:
-
-   ```bash
-   git clone https://github.com/Rarestq/multi-platform-hot-post-search.git
+1. Clone the repository:
    ```
-
-2. Navigate to the project directory:
-
-   ```bash
+   git clone https://github.com/Rarestq/multi-platform-hot-post-search.git
    cd multi-platform-hot-post-search
    ```
 
-3. Install dependencies:
+2. Create a virtual environment and activate it:
+   ```
+   python -m venv venv
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   ```
 
-   ```bash
+3. Install the required dependencies:
+   ```
    pip install -r requirements.txt
    ```
-4. create .env.local file, and setup your own Reddit Client ID and Client Secret, refer to [Reddit Apps](https://www.reddit.com/prefs/apps/):
-  
-  ```markdown
-   REDDIT_CLIENT_ID=""
-   REDDIT_CLIENT_SECRET=""
-   REDDIT_USER_AGENT="YourAppName/0.1 by username"
-   ```
+
+4. Set up environment variables:
+   - Copy the `.env.example` file to `.env`
+   - Fill in the necessary API keys and configuration options
 
 ## Usage
 
-Run the script:
-
-   ```bash
-   python3 main.py
+1. Start the Flask server:
    ```
-then you get results from reddit and hackernews by your keyword.
+   python run.py
+   ```
 
-### Example
+2. The API will be available at `http://localhost:5000`
 
-```bash
-python3 main.py
+3. Use the `/v1/search` endpoint to perform searches:
+   ```
+   POST /v1/search
+   Content-Type: application/json
+
+   {
+     "keyword": "artificial intelligence",
+     "platforms": ["reddit", "hackernews", "github"]
+   }
+   ```
+   you can use `curl` command to send post request:
+   ```bash
+   curl -X POST http://127.0.0.1:5000/search \
+     -H "Content-Type: application/json" \
+     -d '{"keyword": "AI", "platforms": ["reddit", "hackernews", "github"]}'
+   ```
+   if your computer's system is Windows, then use `curl` command like below:
+   ```bash
+   curl -X POST http://127.0.0.1:5000/search -H "Content-Type: application/json" -d "{\"keyword\": \"AI\", \"platforms\": [\"reddit\", \"hackernews\", \"github\"]}"
+   ```
+
+4. View the Swagger documentation at `http://localhost:5000/apidocs`
+
+## Configuration
+
+The following environment variables can be used to configure the application:
+
+- `RATELIMIT_DEFAULT`: Default rate limit (e.g., "100 per day, 20 per hour")
+- `CACHE_TYPE`: Type of cache to use (default: "simple")
+- `CACHE_DEFAULT_TIMEOUT`: Default cache timeout in seconds (default: 600)
+- `HOT_KEYWORDS`: Comma-separated list of hot keywords for cache preheating
+- `ENABLE_PERFORMANCE_MONITORING`: Enable/disable performance monitoring (default: True)
+- `LOG_LEVEL`: Logging level (default: INFO)
+- `DEFAULT_PLATFORMS`: Comma-separated list of default platforms to search
+- etc.
+
+## Testing
+
+This project uses pytest for testing. To run the tests:
+
 ```
-input your keyword: ComfyUI
-
-hottest results of Reddit and HackerNews:
-```markdown
-Platform: Reddit
-Author: Illustrious-Yard-871
-Title: I couldn't find an intuitive GUI for GLIGEN so I made one myself. It uses ComfyUI in the backend
-Metrics: 2437
-Link: https://www.reddit.com/r/StableDiffusion/comments/1asmn6d/i_couldnt_find_an_intuitive_gui_for_gligen_so_i/
-Post: 2024-02-16 23:12:58
----
-Platform: Reddit
-Author: Choidonhyeon
-Title: ComfyUI - Creating Game Icons base on realtime drawing
-Metrics: 1542
-Link: https://www.reddit.com/r/StableDiffusion/comments/1b9vqdz/comfyui_creating_game_icons_base_on_realtime/
-Post: 2024-03-08 18:44:52
----
-Platform: Reddit
-Author: ThroughForests
-Title: Hank Hill tries ComfyUI
-Metrics: 1252
-Link: https://www.reddit.com/r/StableDiffusion/comments/15ilqso/hank_hill_tries_comfyui/
-Post: 2023-08-05 04:22:22
----
-Platform: Reddit
-Author: comfyanonymous
-Title: Real time prompting with SDXL Turbo and ComfyUI running locally
-Metrics: 1181
-Link: https://www.reddit.com/r/StableDiffusion/comments/1869cnk/real_time_prompting_with_sdxl_turbo_and_comfyui/
-Post: 2023-11-28 22:48:52
----
-Platform: Reddit
-Author: AtreveteTeTe
-Title: Roll your own Motion Brush with AnimateDiff and in-painting in ComfyUI
-Metrics: 930
-Link: https://www.reddit.com/r/StableDiffusion/comments/17xnqn7/roll_your_own_motion_brush_with_animatediff_and/
-Post: 2023-11-17 20:05:15
----
-Platform: HackerNews
-Author: gslin
-Title: Windows 9x and Word 9x at 800x600 resolution. Spacious. Comfy
-Metrics: 338
-Link: https://oldbytes.space/@48kRAM/110695813509755748
-Post: 2023-07-11 15:31:17
----
-Platform: HackerNews
-Author: belladoreai
-Title: Keylogger discovered in image generator extension
-Metrics: 302
-Link: https://old.reddit.com/r/comfyui/comments/1dbls5n/psa_if_youve_used_the_comfyui_llmvision_node_from/
-Post: 2024-06-09 17:29:00
----
-Platform: HackerNews
-Author: vmoore
-Title: Comfy Software: A software aesthetic for hackers with depression
-Metrics: 193
-Link: https://catgirl.ai/log/comfy-software/
-Post: 2022-10-02 05:31:36
----
-Platform: HackerNews
-Author: godDLL
-Title: A Comfy Helvetica frontpage for Hacker News
-Metrics: 176
-Link: http://comfy-helvetica.jottit.com/
-Post: 2011-01-13 00:45:39
----
-Platform: HackerNews
-Author: kettunen
-Title: Creating Comfy FreeBSD Jails Using Standard Tools
-Metrics: 123
-Link: https://kettunen.io/post/standard-freebsd-jails/
-Post: 2021-01-17 19:07:30
----
+pytest
 ```
 
 ## Contributing
@@ -160,16 +146,18 @@ If you would like to contribute to this project, please follow these steps:
 6. Create a new Pull Request.
 
 ## Sponsor
-<a href='https://ko-fi.com/rarestzhou' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi5.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' />
+
+<a href='https://ko-fi.com/rarestzhou' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi5.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 ![Sponsor me by wechat](https://img.mini-url.top/file/7571504552e403f309a0b.jpg)
 
 ## Contact
+
 - Email: rarestzhou@gmail.com
 - DM me on [twitter](https://twitter.com/rarestzhou) is also welcome.
-- Wechat:zjc111369
-![](https://mmbiz.qpic.cn/mmbiz_jpg/KhD0fibB4GCDFlkCNLH5B7xiaIlGSWFSbXEtCYRJQ7fzsvb447XhJm35pkgjN75e0IfAbIBp5hdfl15ke3VJkdog/640?wx_fmt=jpeg)
+- Wechat: zjc111369
+![WeChat QR Code](https://mmbiz.qpic.cn/mmbiz_jpg/KhD0fibB4GCDFlkCNLH5B7xiaIlGSWFSbXEtCYRJQ7fzsvb447XhJm35pkgjN75e0IfAbIBp5hdfl15ke3VJkdog/640?wx_fmt=jpeg)
 
 ---
 
-Feel free to customize this template further based on your specific project details and requirements!
+Feel free to customize this README further based on your specific project details and requirements!
