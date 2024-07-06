@@ -1,5 +1,5 @@
 from marshmallow import Schema, fields, validate
-from .config import Config
+from config import Config
 
 class SearchSchema(Schema):
     """

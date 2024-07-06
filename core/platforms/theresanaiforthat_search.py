@@ -15,7 +15,7 @@ class TheresAnAIForThat(Platform):
         """
         Fetch top posts related to the given keyword from theresanaiforthat.com.
         """
-        print(f"Searching TheresAnAIForThat for keyword: {keyword}")
+        print(f"Searching TheresAnAIForThat for keyword: {keyword}\n")
         
         try:
             response = requests.get(THERESANAIFORTHAT_URL, headers=HEADERS)

@@ -20,7 +20,7 @@ class HackerNews(Platform):
                 'tags': 'story',
                 'hitsPerPage': 50  # Fetching more stories to sort by date later
             }
-            print(f"Searching HackerNews for keyword: {keyword}")
+            print(f"Searching HackerNews for keyword: {keyword}\n")
             
             response = requests.get(HACKERNEWS_API_URL, params=params, headers=HEADERS)
             response.raise_for_status()  # Raise an error for bad responses (4xx or 5xx)

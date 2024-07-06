@@ -1,6 +1,6 @@
 import logging
-from flask import request, g
-from time import time
+from flask import current_app, request, g
+import time
 from functools import wraps
 
 logger = logging.getLogger(__name__)
@@ -15,7 +15,7 @@ def setup_performance_monitoring(app):
     @app.before_request
     def before_request():
         """Record the start time of each request."""
-        g.start_time = time()
+        g.start_time = time.time()
 
     @app.after_request
     def after_request(response):
@@ -28,8 +28,8 @@ def setup_performance_monitoring(app):
         Returns:
             The unchanged response object.
         """
-        if app.config['ENABLE_PERFORMANCE_MONITORING']:
-            duration = (time() - g.start_time) * 1000  # Convert to milliseconds
+        if current_app.config['ENABLE_PERFORMANCE_MONITORING']:
+            duration = (time.time() - g.start_time) * 1000  # Convert to milliseconds
             logger.info(f"Request to {request.path} took {duration:.2f} ms.")
         return response
 
@@ -45,11 +45,15 @@ def performance_monitor(f):
     """
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        start_time = time()
+        if current_app.config['ENABLE_PERFORMANCE_MONITORING']:
+            start_time = time.time()
+            
         result = f(*args, **kwargs)
-        if app.config['ENABLE_PERFORMANCE_MONITORING']:
-            duration = (time() - start_time) * 1000  # Convert to milliseconds
+        
+        if current_app.config['ENABLE_PERFORMANCE_MONITORING']:
+            duration = (time.time() - start_time) * 1000  # Convert to milliseconds
             response_size = len(str(result))
             logger.info(f"API call to {request.path} took {duration:.2f} ms. Response size: {response_size} bytes.")
+            
         return result
     return decorated_function

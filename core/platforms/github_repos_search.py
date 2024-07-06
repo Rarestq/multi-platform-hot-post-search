@@ -22,7 +22,7 @@ class GitHub(Platform):
         """
         Use the GitHub API to fetch top repositories related to the given keyword.
         """
-        print(f"Searching GitHub for keyword: {keyword}")
+        print(f"Searching GitHub for keyword: {keyword}\n")
         
         # see: https://docs.github.com/en/rest/search/search?apiVersion=2022-11-28#search-repositories
         # or REST API end points for search: https://docs.github.com/en/rest/search?apiVersion=2022-11-28

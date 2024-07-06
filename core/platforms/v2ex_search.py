@@ -13,7 +13,7 @@ class V2EX(Platform):
         """
         Fetch top posts related to the given keyword from V2EX using sov2ex.com.
         """
-        print(f"Searching V2EX for keyword: {keyword}")
+        print(f"Searching V2EX for keyword: {keyword}\n")
         
         params = {
             'q': keyword
